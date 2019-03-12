@@ -22,7 +22,9 @@ COPY --from=0 /src/packages/server/cli-linux-x64 /usr/local/bin/code-server
 EXPOSE 8443
 RUN apt-get update && apt-get install -y \
 	openssl \
-	net-tools
+	net-tools \
+	ppa-purge \
+	&& ppa-purge ppa:ubuntu-toolchain-r/test
 RUN apt-get install -y locales && \
 	locale-gen en_US.UTF-8
 # We unfortunately cannot use update-locale because docker will not use the env variables
