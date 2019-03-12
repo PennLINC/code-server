@@ -24,9 +24,10 @@ EXPOSE 8443
 RUN apt-get update && apt-get install -y \
 	openssl \
 	net-tools \
-	git \
-	locales
-RUN locale-gen en_US.UTF-8
+	ppa-purge \
+	&& ppa-purge ppa:ubuntu-toolchain-r/test
+RUN apt-get install -y locales && \
+	locale-gen en_US.UTF-8
 # We unfortunately cannot use update-locale because docker will not use the env variables
 # configured in /etc/default/locale so we need to set it manually.
 ENV LANG=en_US.UTF-8
