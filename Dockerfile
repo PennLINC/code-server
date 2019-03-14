@@ -20,7 +20,7 @@ FROM ubuntu:16.04
 WORKDIR /root/project
 COPY --from=0 /src/packages/server/cli-linux-x64 /usr/local/bin/code-server
 EXPOSE 8443
-RUN apt-get update && apt-get install software-properties-common \
+RUN apt-get update && apt-get install -y software-properties-common \
 	python-software-properties && \
 	add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt-get update && \
