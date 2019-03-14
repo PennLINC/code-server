@@ -20,11 +20,13 @@ FROM ubuntu:16.04
 WORKDIR /root/project
 COPY --from=0 /src/packages/server/cli-linux-x64 /usr/local/bin/code-server
 EXPOSE 8443
-RUN apt-get update && apt-get install -y \
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test
+RUN apt-get update && \
+	apt-get upgrade & \
+	apt-get dist-upgrade \
+	apt-get install -y \
 	openssl \
 	net-tools \
-	ppa-purge \
-	&& ppa-purge ppa:ubuntu-toolchain-r/test
 RUN apt-get install -y locales && \
 	locale-gen en_US.UTF-8
 # We unfortunately cannot use update-locale because docker will not use the env variables
