@@ -23,9 +23,9 @@ EXPOSE 8443
 RUN apt-get update && apt-get install -y software-properties-common \
 	python-software-properties && \
 	add-apt-repository ppa:ubuntu-toolchain-r/test 
-RUN apt-get update && \
-	apt-get upgrade && \
-	apt-get dist-upgrade && \
+RUN apt-get update -y && \
+	apt-get upgrade -y && \
+	apt-get dist-upgrade -y && \
 	apt-get install -y \
 	openssl \
 	net-tools 
