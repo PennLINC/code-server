@@ -16,7 +16,7 @@ COPY . .
 RUN yarn && yarn task build:server:binary
 
 # We deploy with ubuntu so that devs have a familiar environment.
-FROM ubuntu:16.04
+FROM ubuntu:16.04 as user_layer
 WORKDIR /root/project
 COPY --from=0 /src/packages/server/cli-linux-x64 /usr/local/bin/code-server
 EXPOSE 8443
